@@ -68,3 +68,5 @@ Geralmente, o **npm** (node package manager) vem junto.
 
 Pronto! Se tudo der certo, o servidor estará rodando na porta 8888.
 
+>  No arquivo "urls" há uma lista de feeds testados.
+
