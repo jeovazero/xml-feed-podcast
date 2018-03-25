@@ -1,0 +1,31 @@
+<div id="title_podcast"><%= title %></div>
+<div id="desc_podcast"><%= desc %></div>
+<div id="img_podcast">
+    <% if (img != null){%>
+      <img src="<%= img %>" >
+    <% } %>
+</div>
+<div>
+      <% list.forEach(function(o){ %>
+        <div class="container"> 
+          
+          <div class="title">
+              <p><%= o.title %></p>
+          </div>
+
+          <div class="desc">
+              <p><%- o.desc %></p>
+          </div>
+
+          <div class="pubdate">
+              <p><%= o.pubdate %></p>
+          </div>
+
+          <% if (o.media != null){%>
+            <audio src="<%= o.media.url%>" controls>
+            </audio>
+          <% } %>
+
+        </div>
+      <% }) %>
+    </div>
