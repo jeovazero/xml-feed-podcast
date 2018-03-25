@@ -124,7 +124,7 @@ http.createServer(function(req, res){
     }else{
         console.log("ERROR: Metodo não esperado");
     }
-}).listen(8888, function(){
+}).listen(process.env.PORT || 8888, function(){
     console.log('Escutando na porta ' + this.address().port );
 });
 

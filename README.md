@@ -56,9 +56,13 @@ Geralmente, o **npm** (node package manager) vem junto.
 
 ##### Execute:
 
-```npm install```
+1. Instalando as dependencias
 
-```npm start```
+   ```npm install```
+
+2. Iniciando o servidor
+
+   ```npm start```
 
 
 
