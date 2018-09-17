@@ -1,83 +1,110 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf8">
-    <meta author="jeovazero">
-    <title> Feed podcasts</title>
-    <link rel="stylesheet" href="../src/css/style.css">
-    <link href="//db.onlinewebfonts.com/c/844071290a6e549d637977dea6b1945c?family=Gidolinya" rel="stylesheet" type="text/css"/>
-  </head>
-  <body>
-    <div id="wrapper">
-      <header>
-        <div id="title">XML - PODCASTS - FEED</div>
-      </header>
 
-      <div id="url_field">
-        <span>URL: </span>
-        <input type="text" id="text_field" placeholder="http://urldoxml.com"/>
-        <button id="button"> OK </button>
-        <p>Será exibido no maximo 10 itens!</p>
+<head>
+  <meta charset="utf8">
+  <meta author="jeovazero">
+  <title> Feed podcasts</title>
+  <link rel="stylesheet" href="../src/css/style.css">
+  <link href="//db.onlinewebfonts.com/c/844071290a6e549d637977dea6b1945c?family=Gidolinya" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div id="wrapper">
+    <header>
+      <div id="title">XML - PODCASTS - FEED</div>
+    </header>
+    <div id="help">
+      <div class="title"> Algumas urls </div>
+      <div>
+        <ul>
+          <li>https://jovemnerd.com.br/feed-nerdcast/</li>
+          <li>https://hipsters.tech/feed/podcast/</li>
+          <li>https://devnaestrada.com.br/feed.xml</li>
+          <li>https://www.lambda3.com.br/feed/</li>
+          <li> https://mundopodcast.com.br/podprogramar/feed/</li>
+          <li> http://www.grokpodcast.com/atom.xml</li>
+          <li> https://loopmatinal.libsyn.com/rss</li>
+          <li>https://canaltech.com.br/rss/podcast/</li>
+          <li>http://feeds.feedburner.com/podcastmrg?format=xml</li>
+        </ul>
       </div>
-
-      <div id="content"></div>
-
-      <!-- ============= MODAL =============  -->
-      
     </div>
-    <div id="modal" class="hide">
-        <div id="box">
-          <div class="content">
-            <p id="message"></p>
-          </div>
-          <div class="close" onclick="hideModal()">Fechar</div>
-        </div>
-      </div>
-  </body>
-  <script>
-    var button = document.getElementById('button');
-    var input = document.getElementById('text_field');
+    <div id="url_field">
+      <span>URL: </span>
+      <input type="text" id="text_field" placeholder="http://urldoxml.com" />
+      <button id="button"> OK </button>
+      <p>Será exibido no maximo 10 itens!</p>
+    </div>
 
-    var xhr = new XMLHttpRequest();
-    button.onclick = function(){
-      var value = input.value;
-      showModal("Esperando a resposta do servidor...<br>O XML pode ser muito grande..");
-      // Esperando a Resposta do server
-      xhr.onreadystatechange = function(){
-        if(this.readyState == 4){
-          if(this.status == 200){
-            console.log("Status 200 OK")
-            hideModal();
-            document.getElementById('content').innerHTML = xhr.responseText;
-          }else{
-            console.log("Status "+this.readyState);
-            showModal("Ocorrido um erro: " + xhr.responseText);
-          }
+    <div id="content"></div>
+
+    <!-- ============= MODAL =============  -->
+
+  </div>
+  <div id="modal" class="hide">
+    <div id="box">
+      <div class="content">
+        <p id="message"></p>
+      </div>
+      <div class="close" onclick="hideModal()">Fechar</div>
+    </div>
+  </div>
+</body>
+<script>
+  var button = document.getElementById('button');
+  var input = document.getElementById('text_field');
+
+  var xhr = new XMLHttpRequest();
+  button.onclick = function () {
+    var value = input.value;
+    showModal("Esperando a resposta do servidor...<br>O XML pode ser muito grande..");
+    // Esperando a Resposta do server
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4) {
+        if (this.status == 200) {
+          console.log("Status 200 OK")
+          hideModal();
+          document.getElementById('content').innerHTML = xhr.responseText;
+        } else {
+          console.log("Status " + this.readyState);
+          showModal("Ocorrido um erro: " + xhr.responseText);
         }
       }
-
-      // ========= Fazendo a Requisição ===================
-      xhr.open('POST', '/', true);
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      
-      // Enviando o parametro
-      xhr.send('url='+value);
-    };
-
-    var messageEL = document.getElementById("message");
-    var modal = document.getElementById("modal");
-    function showModal(message){
-      console.log("Exibindo modal");
-      modal.classList.remove('hide');
-      modal.classList.add('show');
-      messageEL.innerHTML = message;
     }
 
+    // ========= Fazendo a Requisição ===================
+    xhr.open('POST', '/', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    function hideModal(){
-      console.log("Ocultando modal");
-      modal.classList.remove('show');
-      modal.classList.add('hide');
-    }
-  </script>
+    // Enviando o parametro
+    xhr.send('url=' + value);
+  };
+
+  var messageEL = document.getElementById("message");
+  var modal = document.getElementById("modal");
+
+  function showModal(message) {
+    console.log("Exibindo modal");
+    modal.classList.remove('hide');
+    modal.classList.add('show');
+    messageEL.innerHTML = message;
+  }
+
+
+  function hideModal() {
+    console.log("Ocultando modal");
+    modal.classList.remove('show');
+    modal.classList.add('hide');
+  }
+
+  var list_li = Array.from(document.getElementsByTagName("li"));
+  list_li.forEach((el) => {
+    el.addEventListener('click', () => {
+      input.value = el.innerHTML;
+    })
+  });
+
+</script>
+
 </html>

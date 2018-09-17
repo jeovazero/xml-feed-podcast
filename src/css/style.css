@@ -198,3 +198,39 @@ body{
   cursor: pointer;
   background-color: #4567aa;
 }
+
+#help{
+  width: 50%;
+  margin: auto;
+  font-family: "Gidolinya";
+  background-color: #fef;
+  border-radius: 0.3rem;
+  padding: 0.25rem 3rem;
+  box-sizing: border-box;
+  max-height: 3rem;
+  overflow: hidden;
+  transition: max-height ease-out 0.333s;
+  color: rgb(12, 141, 130);
+  border-bottom: 3px solid rgb(24, 224, 231);
+  cursor: help;
+}
+
+#help .title{
+  font-size: 1.3em;
+  padding: 0.5rem 0;
+}
+
+#help ul{
+  padding: 0.5rem 0rem 1rem 0rem;
+}
+
+#help li{
+  list-style-type: none;
+  margin: 0;
+  padding: 4px 0px;
+  cursor: pointer;
+}
+
+#help:hover{
+  max-height: 200rem;
+}
